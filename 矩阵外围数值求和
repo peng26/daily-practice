@@ -1,0 +1,41 @@
+#include<stdio.h>
+#define M 2
+#define N 3
+int fun(int a[M][N], int m, int n);
+int main()
+{
+	int a[M][N], i, j;
+	printf("请输入%d * %d的二维数组\n",M,N);
+	for (i = 0; i < M; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			scanf("%d",&a[i][j]);
+		}
+	}
+	printf("则该%d * %d的二维数组的外围周边数组元素之和为：%d\n",M,N,fun(a,M,N));
+	return 0;
+}
+int fun(int a[M][N], int m, int n)
+{
+	int sum = 0, i = 0;
+	for (i = 0; i < n; i++)
+	{
+		sum += a[0][i];
+	}
+	for (i = 1; i < m; i++)
+	{
+		sum += a[i][n-1];
+	}
+	for (i = n - 2; i >= 0; i--)
+	{
+		sum += a[m-1][i];
+	}
+	for (i = m - 2; i>0; i--)
+	{
+		sum += a[i][0];
+	}
+	return sum;
+}
+
+
